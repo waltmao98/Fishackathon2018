@@ -35,6 +35,14 @@ public enum IngredientValue {
 
     public String getDBCol() { return mDBCol; }
 
+    public boolean getGreaterThan() {
+        return mGreaterThan;
+    }
+
+    public double getThreshold() {
+        return mThreshold;
+    }
+
     public static String[] getThresholds() {
         String[] thresh = new String[values().length];
         for(int i = 0; i < values().length; ++i) {

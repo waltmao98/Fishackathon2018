@@ -18,6 +18,7 @@ import java.util.Map;
 
 import de.codecrafters.tableview.TableView;
 import de.codecrafters.tableview.model.TableColumnModel;
+import de.codecrafters.tableview.model.TableColumnWeightModel;
 import de.codecrafters.tableview.toolkit.SimpleTableDataAdapter;
 import de.codecrafters.tableview.toolkit.SimpleTableHeaderAdapter;
 
@@ -83,6 +84,12 @@ public abstract class BaseDisplayFragment extends Fragment {
 
         mTableView = view.findViewById(R.id.tableView);
         mTableView.setColumnCount(4);
+        TableColumnWeightModel columnModel = new TableColumnWeightModel(4);
+        columnModel.setColumnWeight(0, 2);
+        columnModel.setColumnWeight(1, 1);
+        columnModel.setColumnWeight(2, 1);
+        columnModel.setColumnWeight(3, 1);
+        mTableView.setColumnModel(columnModel);
     }
 
     private void focusSearchBar() {

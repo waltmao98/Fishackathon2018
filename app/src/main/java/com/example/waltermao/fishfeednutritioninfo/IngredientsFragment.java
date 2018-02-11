@@ -97,12 +97,14 @@ public class IngredientsFragment extends BaseDisplayFragment {
             return new String[0][0];
         }
         String[][] data = new String[IngredientValue.values().length][4];
+        String[] values = ingredient.getIngMapValues();
+        String[] results = ingredient.getResults();
 
         for(int i = 0; i < IngredientValue.values().length; ++i) {
             data[i][0] = IngredientValue.getActualColNames()[i];
             data[i][1] = IngredientValue.getThresholds()[i];
-            data[i][2] = ingredient.getIngMapValues()[i];
-            data[i][3] = "";
+            data[i][2] = values[i];
+            data[i][3] = results[i];
         }
 
         return data;

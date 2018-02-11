@@ -11,6 +11,9 @@ public class Ingredient {
 
     private String name;
 
+    public static final String GOOD = "good";
+    public static final String BAD = "bad";
+
     Map<String,Double> mIngValuesMap; // maps each ing value table col name to it's value
 
     public Ingredient() {
@@ -33,6 +36,28 @@ public class Ingredient {
             ++i;
         }
         return vals;
+    }
+
+    public String[] getResults() {
+        String[] results = new String[mIngValuesMap.size()];
+        int i = 0;
+        for(IngredientValue val : IngredientValue.values()) {
+            if(val.getGreaterThan()) {
+                if(mIngValuesMap.get(val.getDBCol()) >= val.getThreshold()) {
+                    results[i] = GOOD;
+                } else {
+                    results[i] = BAD;
+                }
+            } else {
+                if(mIngValuesMap.get(val.getDBCol()) <= val.getThreshold()) {
+                    results[i] = GOOD;
+                } else {
+                    results[i] = BAD;
+                }
+            }
+            ++i;
+        }
+        return results;
     }
 
     public Map<String,Double> getIngValuesMap() { return mIngValuesMap; }
