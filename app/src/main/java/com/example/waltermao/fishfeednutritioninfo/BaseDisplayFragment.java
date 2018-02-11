@@ -34,13 +34,13 @@ public abstract class BaseDisplayFragment extends Fragment {
     private TableView mTableView;
     private FrameLayout mTableContainer;
 
-    private static final String[][] DATA_TO_SHOW = { { "This", "is", "a", "test" },
-            { "and", "a", "second", "test" } };
+    private static final String[][] DATA_TO_SHOW = {{"This", "is", "a", "test"},
+            {"and", "a", "second", "test"}};
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_ingredients,container,false);
+        View v = inflater.inflate(R.layout.fragment_ingredients, container, false);
         return v;
     }
 
@@ -53,7 +53,7 @@ public abstract class BaseDisplayFragment extends Fragment {
         mSearchView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
-                if(b) focusSearchBar();
+                if (b) focusSearchBar();
                 else focusTable();
             }
         });
@@ -62,7 +62,7 @@ public abstract class BaseDisplayFragment extends Fragment {
             @Override
             public void onSearchTextChanged(String oldQuery, final String newQuery) {
                 focusSearchBar();
-                if(newQuery != null && !newQuery.isEmpty()) {
+                if (newQuery != null && !newQuery.isEmpty()) {
                     queryForSearchSuggestions(newQuery);
                 }
             }
@@ -93,13 +93,13 @@ public abstract class BaseDisplayFragment extends Fragment {
     }
 
     private void focusSearchBar() {
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         mSearchView.setLayoutParams(params);
         mTableContainer.setVisibility(View.GONE);
     }
 
     private void focusTable() {
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,300);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 300);
         mSearchView.setLayoutParams(params);
         mSearchView.swapSuggestions(new ArrayList<SearchSuggestion>());
         mSearchView.setDismissFocusOnItemSelection(true);
@@ -114,8 +114,12 @@ public abstract class BaseDisplayFragment extends Fragment {
 
     abstract void onSuggestionSelected(SearchSuggestion suggestion); // load the selected info
 
-    public TableView getTableView() {return mTableView;}
+    public TableView getTableView() {
+        return mTableView;
+    }
 
-    FloatingSearchView getSearchView() { return mSearchView; }
+    FloatingSearchView getSearchView() {
+        return mSearchView;
+    }
 
 }

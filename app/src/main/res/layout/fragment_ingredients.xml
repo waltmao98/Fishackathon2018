@@ -3,32 +3,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:table="http://schemas.android.com/tools"
     android:id="@+id/container"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <com.arlib.floatingsearchview.FloatingSearchView
         android:id="@+id/floating_search_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:floatingSearch_searchBarMarginTop="@dimen/search_view_inset"
+        app:floatingSearch_close_search_on_keyboard_dismiss="true"
+        app:floatingSearch_leftActionMode="showSearch"
         app:floatingSearch_searchBarMarginLeft="@dimen/search_view_inset"
         app:floatingSearch_searchBarMarginRight="@dimen/search_view_inset"
+        app:floatingSearch_searchBarMarginTop="@dimen/search_view_inset"
         app:floatingSearch_searchHint="Search..."
-        app:floatingSearch_suggestionsListAnimDuration="250"
         app:floatingSearch_showSearchKey="false"
-        app:floatingSearch_leftActionMode="showSearch"
-        app:floatingSearch_close_search_on_keyboard_dismiss="true" />
-        <!-- app:floatingSearch_menu="@menu/menu_main" -->
+        app:floatingSearch_suggestionsListAnimDuration="250" />
+    <!-- app:floatingSearch_menu="@menu/menu_main" -->
 
     <FrameLayout
+        android:id="@+id/table_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/search_view_inset"
-        android:layout_marginRight="@dimen/search_view_inset"
-        android:layout_marginLeft="@dimen/search_view_inset"
         android:layout_below="@+id/floating_search_view"
-        android:id="@+id/table_container">
+        android:layout_marginBottom="@dimen/search_view_inset"
+        android:layout_marginLeft="@dimen/search_view_inset"
+        android:layout_marginRight="@dimen/search_view_inset">
 
         <de.codecrafters.tableview.TableView
             android:id="@+id/tableView"

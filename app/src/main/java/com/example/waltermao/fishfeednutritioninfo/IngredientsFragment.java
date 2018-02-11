@@ -27,7 +27,7 @@ public class IngredientsFragment extends BaseDisplayFragment {
     private static final int INGREDIENT_SUGGESTIONS_LOADER_ID = 22;
     private static final int INGREDIENT_LOADER_ID = 19;
 
-    private static String[] ingTableHeaders = {"Property","Limit","Actual","Result"};
+    private static String[] ingTableHeaders = {"Property", "Limit", "Actual", "Result"};
 
     private Ingredient mIngredient;
 
@@ -43,7 +43,7 @@ public class IngredientsFragment extends BaseDisplayFragment {
         getLoaderManager().restartLoader(INGREDIENT_SUGGESTIONS_LOADER_ID, null, new LoaderManager.LoaderCallbacks<List<IngredientSearchSuggestion>>() {
             @Override
             public Loader<List<IngredientSearchSuggestion>> onCreateLoader(int id, Bundle args) {
-                return new IngredientsLoader(getContext(),searchTerm);
+                return new IngredientsLoader(getContext(), searchTerm);
             }
 
             @Override
@@ -62,21 +62,21 @@ public class IngredientsFragment extends BaseDisplayFragment {
 
     @Override
     void onSuggestionSelected(SearchSuggestion suggestion) {
-        if(!(suggestion instanceof IngredientSearchSuggestion)) {
-            Log.e(LOG_TAG,"the suggestion is not an instance of IngredientSearchSuggestion");
+        if (!(suggestion instanceof IngredientSearchSuggestion)) {
+            Log.e(LOG_TAG, "the suggestion is not an instance of IngredientSearchSuggestion");
             return;
         }
         final IngredientSearchSuggestion ingredientSearchSuggestion = (IngredientSearchSuggestion) suggestion;
         getLoaderManager().restartLoader(INGREDIENT_LOADER_ID, null, new LoaderManager.LoaderCallbacks<Ingredient>() {
             @Override
             public Loader<Ingredient> onCreateLoader(int id, Bundle args) {
-                return new SingleIngredientLoader(getContext(),ingredientSearchSuggestion.getIngCode());
+                return new SingleIngredientLoader(getContext(), ingredientSearchSuggestion.getIngCode());
             }
 
             @Override
             public void onLoadFinished(Loader<Ingredient> loader, Ingredient data) {
                 TableView tableView = getTableView();
-                tableView.setHeaderAdapter(new SimpleTableHeaderAdapter(getContext(),ingTableHeaders));
+                tableView.setHeaderAdapter(new SimpleTableHeaderAdapter(getContext(), ingTableHeaders));
 
                 String[][] tableData = generateTableData(data);
 
@@ -92,15 +92,15 @@ public class IngredientsFragment extends BaseDisplayFragment {
     }
 
     private String[][] generateTableData(Ingredient ingredient) {
-        if(ingredient == null) {
-            Log.d(LOG_TAG,"ingredient is null. cannot generate data");
+        if (ingredient == null) {
+            Log.d(LOG_TAG, "ingredient is null. cannot generate data");
             return new String[0][0];
         }
         String[][] data = new String[IngredientValue.values().length][4];
         String[] values = ingredient.getIngMapValues();
         String[] results = ingredient.getResults();
 
-        for(int i = 0; i < IngredientValue.values().length; ++i) {
+        for (int i = 0; i < IngredientValue.values().length; ++i) {
             data[i][0] = IngredientValue.getActualColNames()[i];
             data[i][1] = IngredientValue.getThresholds()[i];
             data[i][2] = values[i];

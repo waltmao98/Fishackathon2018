@@ -33,7 +33,9 @@ public enum IngredientValue {
         mGreaterThan = greaterThan;
     }
 
-    public String getDBCol() { return mDBCol; }
+    public String getDBCol() {
+        return mDBCol;
+    }
 
     public boolean getGreaterThan() {
         return mGreaterThan;
@@ -45,7 +47,7 @@ public enum IngredientValue {
 
     public static String[] getThresholds() {
         String[] thresh = new String[values().length];
-        for(int i = 0; i < values().length; ++i) {
+        for (int i = 0; i < values().length; ++i) {
             thresh[i] = String.valueOf(values()[i].mThreshold);
         }
         return thresh;
@@ -53,24 +55,24 @@ public enum IngredientValue {
 
     public static String[] getActualColNames() {
         String[] names = new String[values().length];
-        for(int i = 0; i < values().length; ++i) {
+        for (int i = 0; i < values().length; ++i) {
             names[i] = values()[i].getDBCol();
         }
         return names;
     }
 
     private static void initQueryColNames() {
-        if(queryDBColNames != null) {
+        if (queryDBColNames != null) {
             return;
         }
         queryDBColNames = new String[IngredientValue.values().length];
-        for(int i = 0; i < IngredientValue.values().length; ++i) {
+        for (int i = 0; i < IngredientValue.values().length; ++i) {
             queryDBColNames[i] = "[" + IngredientValue.values()[i].getDBCol() + "]";
         }
     }
 
     public static String[] getQueryDBColNames() {
-        if(queryDBColNames == null) {
+        if (queryDBColNames == null) {
             initQueryColNames();
         }
         return queryDBColNames;
